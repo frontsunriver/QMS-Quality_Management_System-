@@ -1,0 +1,120 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+/**
+ * Created by PhpStorm.
+ * User: Timon
+ * Date: 12/11/2018
+ * Time: 3:47 PM
+ */
+
+class Salesorder extends MY_Controller {
+    public $mLayout = 'porto/';
+
+    function __construct() {
+        parent::__construct();
+
+        $this->load->model(['Ims_salesorder_model', 'Ims_salesorder_product_model', 'Ims_shiporder_model', 'Ims_warehouse_product_model', 'Ims_product_attr_model']);
+    }
+
+    function index() {
+        $this->mHeader['title'] = 'Sales Orders';
+        $this->mHeader['menu_id'] = 'order';
+
+        $this->render('manufacture/salesorder/list', $this->mLayout);
+    }
+
+    function read() {
+        $param = $this->input->post();
+
+        $data = [];
+
+        $filter = [
+            'A.consultant_id' => $this->mUser->consultant_id
+        ];
+
+        $data['iTotalRecords'] = $this->Ims_salesorder_model->count($filter);
+
+        $filter['A.salesorder_num LIKE'] = "%{$param['sSearch']}%";
+
+        $data['iTotalDisplayRecords'] = $this->Ims_salesorder_model->count($filter);
+
+        $orders = [];
+        for ($i = 0; $i < $param['iSortingCols']; $i ++) {
+            $sortCol = $param["iSortCol_{$i}"];
+            if ($param["mDataProp_{$sortCol}"] == 'customer_name')
+                $orders['B.name'] = $param["sSortDir_{$i}"];
+            else if ($param["mDataProp_{$sortCol}"] == 'salesperson_email')
+                $orders['C.employee_email'] = $param["sSortDir_{$i}"];
+            else
+                $orders['A.' . $param["mDataProp_{$sortCol}"]] = $param["sSortDir_{$i}"];
+        }
+
+        $this->db->limit($param['iDisplayLength'], $param['iDisplayStart']);
+
+        $this->db->join("{$this->Ims_customer_model->_table} B", "A.customer_id = B.id", 'right');
+        $this->db->join("{$this->Employees_model->_table} C", "A.salesperson_id = C.employee_id", 'right');
+        $salesorders = $this->Ims_salesorder_model->find($filter, $orders, [
+            'A.*', 'B.name customer_name', 'C.employee_email salesperson_email'
+        ]);
+
+        $data['salesorder'] = $salesorders;
+
+        $data['sEcho'] = $param['sSearch'];
+
+        $this->json($data);
+    }
+
+    function create($id = -1) {
+        $this->mHeader['title'] = 'Sales Orders';
+        $this->mHeader['menu_id'] = 'sales_orders';
+        $this->mContent['customers'] = $this->Ims_customer_model->find(['consultant_id' => $this->mUser->consultant_id]);
+        $this->mContent['warehouses'] = $this->Ims_warehouse_model->find(['consultant_id' => $this->mUser->consultant_id]);
+        $this->mContent['employees'] = $this->Employees_model->find(['consultant_id' => $this->mUser->consultant_id]);
+
+        $products = $this->Ims_product_model->find(['consultant_id' => $this->mUser->consultant_id]);
+
+        foreach ($products as $item) :
+            $attrs = $this->Ims_product_attr_model->find(['product_id' => $item->id], ['id' => 'asc']);
+            if (!empty($attrs)) :
+                $variants = [];
+                foreach ($attrs as $attr) :
+                    $variants[] = explode(',', $attr->value);
+                endforeach;
+
+                $this->mVariants = [];
+                for ($i = 0; $i < count($variants[0]); $i ++)
+                    $this->getVariants($variants, 0, $i, '');
+
+                $item->variants = $this->mVariants;
+            endif;
+        endforeach;
+
+        $this->mContent['products'] = $products;
+
+        $salesorder = $this->Ims_salesorder_model->one(['id' => $id]);
+        if ($salesorder)
+            $salesorder->products = $this->Ims_salesorder_product_model->find(['salesorder_id' => $id], []);
+
+        $this->mContent['salesorder'] = $salesorder;
+
+        $this->render('manufacture/salesorder/create', $this->mLayout);
+    }
+
+    function product() {
+        $warehouse_id = $this->input->post('warehouse_id');
+
+        $this->db->group_by('product_id');
+        $this->db->join("{$this->Ims_product_model->_table} B", 'A.product_id = B.id', 'right');
+        $products = $this->Ims_warehouse_product_model->find(['warehouse_id' => $warehouse_id], ['stocked_date' => 'asc'], ['A.*', 'B.name']);
+
+        foreach ($products as $item) :
+            $variants = $this->Ims_product_attr_model->find(['product_id' => $item->product_id]);
+            if (empty($variants))
+                $item->variants = [];
+            else
+                $item->variants = $this->Ims_warehouse_product_model->find(['warehouse_id' => $warehouse_id, 'product_id' => $item->product_id], ['stocked_date' => 'asc']);
+        endforeach;
+
+        $this->json($products);
+    }
+}

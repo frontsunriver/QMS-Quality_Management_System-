@@ -1,0 +1,1492 @@
+@charset "utf-8";
+
+/* CSS Document */
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    background: #fff;
+}
+
+ul,
+li,
+h1,
+h2,
+h3,
+h5,
+h6,
+ol,
+a {
+    padding: 0px;
+    margin: 0px;
+    list-style-type: none;
+}
+
+a {
+    font-size: 14px;
+    color: #000;
+
+    -webkit-transition: all 600ms cubic-bezier(0.77, 0, 0.175, 1);
+    transition:         all 600ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+a:hover {
+    color: #fff;
+    list-style: none;
+    text-decoration: none;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+
+    -webkit-transition: all 600ms cubic-bezier(0.77, 0, 0.175, 1);
+    transition:         all 600ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+p {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+}
+
+label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.Header .navbar-inverse {
+    background-color: #ffffff;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    padding: 24px 0px;
+    height: 100px;
+    border: 1px solid #000;
+}
+
+.navbar-brand {
+    float: left;
+    height: auto;
+    padding: 0px 15px;
+    max-width: 220px;
+}
+
+.navbar-brand img {
+    width: 100%;
+}
+
+.navbar-inverse {
+    background-color: #222;
+    border-color: transparent !important;
+}
+
+.Header nav li {
+    position: relative;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #000;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 15px;
+    -webkit-transition: all 500ms cubic-bezier(0.250, 0.250, 0.750, 0.750);
+}
+
+.Login {
+    border: 2px solid #1c1c1c;
+    border-radius: 100px;
+    min-width: 160px;
+    text-align: center;
+    margin-left: 40px;
+    text-transform: uppercase;
+    font-weight: 600 !important;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.active>a:hover {
+    color: rgba(255, 255, 255, 0.7);
+    background-color: transparent;
+}
+
+.navbar-inverse .navbar-nav>li>a:focus,
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: #0892d0;
+    background-color: transparent;
+    box-shadow: unset;
+}
+
+.navbar-inverse .navbar-brand:focus,
+.navbar-inverse .navbar-brand:hover {
+    color: #fff;
+    background-color: transparent;
+    box-shadow: unset;
+}
+
+.Submenu {
+    width: auto;
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0px;
+    padding-top: 35px;
+    z-index: 99;
+}
+
+.Submenu li {}
+
+.Submenu li a {
+    line-height: 28px;
+    color: #fff;
+    font-size: 14px;
+    list-style: none !important;
+    text-decoration: none !important;
+    white-space: nowrap;
+    padding: 8px 15px;
+    background: #4cb6f2;
+    display: block;
+    transition: ease-in-out 0.5s;
+}
+
+.Submenu li a:hover {
+    background: #245ca5;
+}
+
+.navbar-nav li:hover .Submenu {
+    display: block;
+}
+
+.LoginBox {
+    background-image: linear-gradient(#7575ed, #925cf2);
+    width: 100%;
+    padding: 100px 15px;
+}
+
+.LoginInner {
+    width: 450px;
+    background: #fff;
+    margin: 0 auto;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.LoginInner input[type="text"] {
+    border: 1px solid #e1e4e5;
+    width: 80%;
+    padding: 10px 12px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.LoginImg {
+    margin-bottom: 30px;
+}
+
+.LoginInner a {
+    background-image: linear-gradient(#7575ed, #925cf2);
+    width: 80%;
+    display: block;
+    padding: 8px;
+    font-size: 21px;
+    margin: auto;
+    color: #fff;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+
+/*---------------------------About us page------------------------------------*/
+
+.innerPageBanner {
+    width: 100%;
+    padding: 6% 20px;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.aboutPageBanner {
+    background-image: url(../../images/home/about-usbg.jpg);
+}
+
+.pageTitleBox {
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.pageTitleBox h1 {
+    font-size: 40px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.pageTitleBox p {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.col-container {
+    display: table;
+    width: 100%;
+}
+
+.col {
+    display: table-cell;
+    padding: 15px;
+}
+
+.aboutInfo {
+    width: 100%;
+}
+
+.aboutInfo .col {
+    width: 50%;
+    background-color: #efefef;
+}
+
+.aboutInfoBox {
+    width: 100%;
+    max-width: 585px;
+    float: right;
+    padding: 80px 15px;
+    padding-right: 50px;
+}
+
+.aboutInfoBox p {
+    font-size: 16px;
+    line-height: 30px;
+    text-align: justify;
+    font-weight: 500;
+}
+
+.aboutBgImg {
+    background: url(../../images/home/officeImg.jpg) right center no-repeat;
+    /*background-attachment: fixed;
+
+    background-size: contain;*/
+    background-size: cover;
+}
+
+.titleH1 {
+    font-size: 40px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #1c1c1c;
+    margin-bottom: 20px;
+}
+
+.contactSection {
+    padding: 80px 0px;
+}
+
+.contactSection .titleH1 {
+    margin-bottom: 40px;
+}
+
+.officeAddressBox {
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0px 15px 40px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.officeAddressBox .nav-tabs {
+    border-bottom: 1px solid #efefef;
+    text-align: center;
+}
+
+.officeAddressBox .nav-tabs>li {
+    float: none;
+    display: inline-block;
+}
+
+.officeAddressBox .nav>li>a:focus,
+.officeAddressBox .nav>li>a:hover {
+    background-color: #efefef;
+    box-shadow: none;
+}
+
+.officeInfo {
+    width: 100%;
+    display: inline-block;
+}
+
+.officeInfo li {
+    width: 33.33%;
+    float: left;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 30px;
+    padding: 30px 15px;
+}
+
+.officeInfo li img {
+    max-width: 70px;
+    margin-bottom: 10px;
+}
+
+.officeInfo h4 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.officeInfo p {
+    font-size: 15px;
+    font-weight: 600;
+    color: #555;
+}
+
+.mapBox {
+    width: 100%;
+    display: inline-block;
+}
+
+.mapBox iframe {
+    width: 100%;
+    height: 450px;
+}
+
+.officeAddressBox .nav-tabs>li>a {
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    padding: 15px 30px;
+}
+
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+    background: #245ca5;
+    color: #fff;
+    border: none;
+}
+
+.SubText {
+    font-size: 13px;
+    color: #1c1c1c;
+    display: block;
+    margin-top: 15px;
+    width: 100%;
+    float: left;
+}
+
+.Footer_Menu {
+    width: 50%;
+    float: left !important;
+}
+
+.Footer_Menu li {
+    width: 100%;
+    float: left;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.Footer_Menu li a {
+    padding: 0px 0px;
+    font-size: 13px;
+    color: #8a8a8a;
+    display: inline-block;
+}
+
+.Footer_Menu li a:hover {
+    color: #1c1c1c;
+    box-shadow: none;
+}
+
+.Social_Menu li {
+    display: inline-block;
+    margin: 5px 10px 0 0;
+}
+
+.Social_Menu {
+    float: left;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.Footer_Menu {
+    float: right;
+}
+
+.Border_Top {
+    border-top: 1px solid #ccc;
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+
+/*--------------------------About us page End---------------------------------*/
+
+.Footer-Left {
+    text-align: left;
+}
+
+.Footer-Left img {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+}
+
+.ftrTitle {
+    font-size: 15px;
+    color: #000;
+    margin-bottom: 20px;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.contactFtr {
+    width: 50%;
+    float: left;
+}
+
+.contactFtr h5 {
+    margin-bottom: 10px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.contactRow {
+    width: 100%;
+    float: left;
+    background-position: left 5px;
+    background-repeat: no-repeat;
+    padding: 0px 10px 0px 25px;
+    color: #8a8a8a;
+}
+
+.contactRow strong {
+    font-weight: 600;
+    color: #8a8a8a;
+}
+
+.contactRow p {
+    line-height: 1.4;
+}
+
+.pinIcon {
+    background-image: url('../../images/home/mappin.png');
+    /*background-image: url('../../images/home/mappin.png');*/
+}
+
+.phoneIcon {
+    background-image: url('../../images/home/phoneicon.png');
+}
+
+.emailIcon {
+    background-image: url('../../images/home/email.png');
+}
+
+.headerHero {
+    background-image: url('../../images/home/headerhero.jpg');
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 400px;
+    float: left;
+    width: 100%;
+    overflow: hidden;
+}
+
+.headerVideo {
+    float: right;
+    margin-top: 60px;
+    margin-right: -210px;
+}
+
+.headerCaption {
+    float: left;
+    width: 100%;
+    margin-top: 230px;
+}
+
+.headerCaption h2 {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #fff;
+    text-align: left;
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.headerCaption p {
+    font-size: 17px;
+    color: #fff;
+    font-weight: 600;
+}
+
+section,
+footer {
+    display: block;
+    float: left;
+    width: 100%;
+}
+
+
+/*--------------------------Index page---------------------------------*/
+
+.fiveOptionBox {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px 15px;
+}
+
+.fiveOptionBox ul {
+    width: 100%;
+    display: inline-block;
+    margin: 0px;
+}
+
+.fiveOptionBox ul>li {
+    width: 20%;
+    float: left;
+    font-size: 17px;
+    color: #fff;
+    line-height: 24px;
+    text-align: center;
+    padding: 0px 15px;
+}
+
+.titleH3 {
+    font-size: 28px;
+    color: #1c1c1c;
+    line-height: 40px;
+    font-weight: 600;
+    padding-bottom: 15px;
+    margin-bottom: 55px;
+    position: relative;
+}
+
+.titleH3:before {
+    position: absolute;
+    content: '';
+    width: 70px;
+    height: 3px;
+    background: #0892d0;
+    bottom: 0px;
+    left: 0px;
+}
+
+.btnYellow {
+    font-size: 14px;
+    font-weight: 700;
+    color: #000;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    background: #fddf01;
+    min-width: 180px;
+    display: inline-block;
+    border-radius: 5px;
+    text-align: center;
+    transition: ease-in-out 0.5s;
+    margin-top: 40px;
+}
+
+.btnYellow:hover {
+    background: #000;
+}
+
+.indexAbout .col {
+    background: #fff;
+}
+
+.indexAbout .aboutInfoBox {
+    padding-top: 100px;
+    padding-bottom: 175px;
+}
+
+.indexAbout .aboutBgImg {
+    background: url(../../images/home/aboutImg.jpg) right center no-repeat;
+    background-size: cover;
+}
+
+.lightBlueSection {
+    background: #c7e4ff;
+}
+
+.contractsPanelBox {
+    width: 100%;
+    max-width: 877px;
+    margin: -85px auto 80px;
+    box-shadow: 0px 20px 80px rgba(0, 0, 0, 0.2);
+}
+
+.contractsPanelBox img {
+    width: 100%;
+}
+
+.solutionsSection {
+    background: #c7e4ff url(../../images/home/bg1.jpg) center bottom -1px no-repeat;
+    padding: 20px 0px 250px;
+    background-size: 100%;
+}
+
+.centerH3 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.centerH3:before {
+    left: 50%;
+    margin-left: -35px;
+}
+
+.subTitle {
+    width: 100%;
+    max-width: 630px;
+    margin: 0px auto;
+    text-align: center;
+    color: #1c1c1c;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 30px;
+}
+
+.solutionsBox {
+    padding: 30px 15px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.solutionsBox img {
+    max-width: 75px;
+}
+
+.solutionsBox h4 {
+    font-size: 18px;
+    color: #1c1c1c;
+    line-height: 24px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.btnLine {
+    font-size: 16px;
+    font-weight: 600;
+    color: #0892d0;
+    text-transform: capitalize;
+    padding-bottom: 8px;
+    border-bottom: 2px #0892d0 solid;
+    display: inline-block;
+    transition: ease-in-out 0.5s;
+}
+
+.btnLine:hover {
+    box-shadow: none;
+    color: #1c1c1c;
+    border-color: #1c1c1c;
+}
+
+.customerSuccess {
+    background: #f8f8fa;
+    padding: 75px 0px;
+}
+
+.successInfo {
+    text-align: center;
+    padding: 50px 15px 20px;
+}
+
+.bigText {
+    font-size: 70px;
+    font-weight: 700;
+    color: #0892d0;
+    display: block;
+    margin-bottom: 20px;
+}
+
+.successInfo p {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1c1c1c;
+}
+
+.testoSection {
+    padding: 100px 0px;
+}
+
+.testoSection .carousel-caption {
+    color: #1c1c1c;
+    text-shadow: none;
+    position: relative;
+    left: 0;
+    right: 0;
+}
+
+.testoSection .carousel-caption p {
+    color: #1c1c1c;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+.testoSection .carousel-caption .userInfo {
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0.6;
+    margin-top: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.testoSection .carousel {
+    width: 100%;
+    max-width: 770px;
+    margin: 0 auto;
+}
+
+.testoSection .carousel-indicators .active {
+    width: 30px;
+    height: 3px;
+    margin: 5px;
+    background-color: #0892d0;
+}
+
+.testoSection .carousel-indicators li {
+    width: 30px;
+    height: 3px;
+    margin: 5px;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 0;
+}
+
+.testoSection .carousel-indicators {
+    bottom: 0px;
+}
+
+
+/* Float Shadow */
+
+.hvr-shadow {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+
+.hvr-shadow:before {
+    pointer-events: none;
+    position: absolute;
+    z-index: -1;
+    content: '';
+    top: 100%;
+    left: 5%;
+    height: 10px;
+    width: 90%;
+    opacity: 0;
+    background: -webkit-radial-gradient(center, ellipse, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 80%);
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 80%);
+    /* W3C */
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform, opacity;
+    transition-property: transform, opacity;
+}
+
+.hvr-shadow:hover,
+.hvr-shadow:focus,
+.hvr-shadow:active {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+    /* move the element up by 5px */
+}
+
+.hvr-shadow:hover:before,
+.hvr-shadow:focus:before,
+.hvr-shadow:active:before {
+    opacity: 1;
+    -webkit-transform: translateY(5px);
+    transform: translateY(5px);
+    /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
+}
+
+.whoWeServe {}
+
+.whoWeServe .aboutBgImg {
+    background: url(../../images/home/whoWeServe.jpg) right center no-repeat;
+    background-size: cover;
+}
+
+.whoWeServe .aboutInfoBox {
+    float: left;
+    padding: 200px 15px;
+    padding-left: 50px;
+    padding-right: 15px;
+}
+
+.listingUl {
+    width: 100%;
+    margin: 10px 0px 20px;
+    display: inline-block;
+}
+
+.listingUl li {
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: 500;
+    padding-left: 20px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.listingUl li:before {
+    position: absolute;
+    content: '';
+    background: #0892d0;
+    width: 6px;
+    height: 6px;
+    border-radius: 100%;
+    left: 0px;
+    top: 8px;
+}
+
+
+/*--------------------------index page End---------------------------------*/
+
+
+/* Pricing Section*/
+
+.Pricing_Section .nav-tabs {
+    text-align: center;
+    border-bottom: 1px solid #efefef;
+}
+
+.Pricing_Section .nav-tabs>li {
+    float: none;
+    display: inline-block;
+}
+
+.Pricing_Section .nav-tabs>li>a {
+    border: none;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    padding: 15px 30px;
+    transition: ease-in-out 0.5s;
+    text-transform: uppercase;
+}
+
+.Pricing_Section .nav-tabs>li>a:focus,
+.Pricing_Section .nav-tabs>li>a:hover {
+    background: #efefef;
+    box-shadow: none;
+}
+
+.Pricing_Section .nav-tabs>li.active>a,
+.Pricing_Section .nav-tabs>li.active>a:focus,
+.Pricing_Section .nav-tabs>li.active>a:hover {
+    background: #245ca5;
+    color: #fff !important;
+    border: none;
+}
+
+.Pricing_Section .nav>li>a:focus,
+.nav>li>a:hover {
+    text-decoration: none;
+    background-color: #245ca5;
+}
+
+.Pricing_Section .tab-content {
+    padding: 40px 10px;
+    float: left;
+    width: 100%;
+}
+
+.PricingTop {
+    background: #3598db;
+    color: #fff;
+    padding: 35px 10px 20px;
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.PricingTop h3 {
+    font-size: 28px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.PricingTop1 {
+    background: #16a086;
+}
+
+.PricingTop2 {
+    background: #f1c40f;
+}
+
+.PricingTop3 {
+    background: #fe0000;
+}
+
+.PricingTop1:before {
+    border-color: #16a086 transparent transparent transparent !important;
+}
+
+.PricingTop2:before {
+    border-color: #f1c40f transparent transparent transparent !important;
+}
+
+.PricingTop3:before {
+    border-color: #fe0000 transparent transparent transparent !important;
+}
+
+.PricingTop:before {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 25px 125px 0 125px;
+    border-color: #3598db transparent transparent transparent;
+    position: absolute;
+    content: '';
+    top: 100%;
+    ;
+    left: 0px;
+}
+
+.PricingMiddle .SignUp1 {
+    background: #16a086 !important;
+}
+
+.PricingMiddle .SignUp2 {
+    background: #f1c40f !important;
+}
+
+.PricingMiddle .SignUp3 {
+    background: #fe0000 !important;
+}
+
+.PricingWrapper {
+    background: #fff;
+    border-radius: 5px;
+    transition: ease-in-out 0.5s;
+    border: 1px solid #efefef;
+}
+
+.PricingWrapper:hover {
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.1);
+}
+
+.PricingMiddle {
+    padding: 50px 10px 10px 10px;
+}
+
+.PricingMiddle ul {
+    width: 100%;
+    display: inline-block;
+    min-height: 190px;
+}
+
+.PricingMiddle ul li:first-child {
+    border-top: none;
+}
+
+.PricingMiddle li {
+    line-height: 24px;
+    border-top: 1px solid #efefef;
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.PricingMiddle .SignUp {
+    background: #3598db;
+    width: 100%;
+    display: inline-block;
+    color: #fff;
+    padding: 12px 12px;
+    font-size: 16px;
+    text-align: center;
+    margin-top: 18px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: ease-in-out 0.5s;
+}
+
+.PricingMiddle .SignUp:hover {
+    color: #000;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.2);
+}
+
+.Pricing_Section {
+    padding: 60px 0px;
+}
+
+
+/*.PaymentMethod {
+
+    background-image: linear-gradient(to bottom right, #70b5f0, #cd2cb6);
+
+}*/
+
+.Payment_Wrapper {
+    border-radius: 10px;
+    float: left;
+    padding: 0px 0;
+}
+
+.Payment_Wrapper h1 {
+    position: relative;
+    padding-left: 30px;
+}
+
+.Payment_Wrapper h1 {
+    color: #fff;
+    font-size: 20px;
+    padding: 12px 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.matop {
+    clear: both;
+    margin-top: 28px !important;
+    float: left;
+}
+
+.Pay_btn {
+    background: #007bff;
+    color: #000;
+    padding: 10px 20px;
+    clear: both;
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin: 35px auto 15px;
+    cursor: pointer;
+    font-size: 18px !important;
+}
+
+.hvr-rectangle-in {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    background: #007bff;
+    -webkit-transition-property: color;
+    transition-property: color;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.hvr-rectangle-in:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+}
+
+.Payment_Wrapper_inner input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    box-shadow: none;
+    color: #000;
+    background: no-repeat;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: unset;
+    font-weight: 500;
+}
+
+.nil {
+    margin-left: 10px;
+}
+
+input[type="text"]:focus,
+select:focus {
+    outline: none;
+}
+
+.Payment_Wrapper_inner label {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: #000;
+    text-align: left;
+    float: left;
+}
+
+::placeholder {
+    color: #ccc;
+    font-size: 16px;
+    opacity: 1;
+    /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: #ccc;
+    font-size: 14px;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+}
+
+.Pay_btn:hover {
+    color: #000000;
+    transform: scale(1.1);
+    transition: ease-in-out 0.3s;
+}
+
+.nil .col-sm-6 {
+    padding: 0px 5px;
+}
+
+.Paymet_Section {
+    margin: 60px 0px;
+}
+
+.PaymentInner h1 {
+    font-size: 21px;
+    margin-top: 15px;
+    color: #1440e8;
+    font-weight: 600;
+}
+
+.PaymentInner h1 {
+    font-size: 21px;
+    margin-top: 15px;
+}
+
+.PaymentInner {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    padding: 40px 10px;
+}
+
+.modal-body h1 {
+    margin-top: 0px !important;
+}
+
+
+/* The container */
+
+.checontainer {
+    display: block;
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 50%;
+    margin: auto;
+    text-align: left;
+    font-size: 18px;
+    margin: 20px auto;
+}
+
+
+/* Hide the browser's default radio button */
+
+.checontainer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+
+/* Create a custom radio button */
+
+.checkmark {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    height: 15px;
+    width: 15px;
+    background-color: #eee;
+    border-radius: 50%;
+}
+
+
+/* On mouse-over, add a grey background color */
+
+.checontainer:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+
+/* When the radio button is checked, add a blue background */
+
+.checontainer input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the indicator (dot/circle) when checked */
+
+.checontainer input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the indicator (dot/circle) */
+
+.checontainer .checkmark:after {
+    top: 4px;
+    left: 4px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: white;
+}
+
+.CardBtn a {
+    background: #2196F3;
+    color: #fff;
+    padding: 13px 12px;
+    border-radius: 5px;
+    transition: ease-in-out 0.5s;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.CardBtn a:hover {
+    background: #245ca5;
+    color: #fff;
+}
+
+.CardBtn {
+    margin-top: 40px;
+}
+
+.Pay {
+    margin-left: 5px;
+}
+
+.Previous i {
+    margin-right: 5px;
+}
+
+.CardBtn .modal-footer {
+    padding: 15px;
+    text-align: right;
+    border-top: 0px;
+}
+
+.CardBtn .modal-header {
+    padding: 15px;
+    border-bottom: 0px;
+}
+
+.CardBtn .modal-body {
+    position: relative;
+    padding: 0px 15px;
+}
+
+
+/* The container */
+
+.CheckBoxs {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* Hide the browser's default checkbox */
+
+.CheckBoxs input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+
+/* Create a custom checkbox */
+
+.CheckBoxs .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 0px;
+}
+
+
+/* On mouse-over, add a grey background color */
+
+.CheckBoxs:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+
+/* When the checkbox is checked, add a blue background */
+
+.CheckBoxs input:checked~.checkmark {
+    background-color: #2196F3;
+}
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the checkmark when checked */
+
+.CheckBoxs input:checked~.checkmark:after {
+    display: block;
+}
+
+
+/* Style the checkmark/indicator */
+
+.CheckBoxs .checkmark:after {
+    left: 8px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.checkboxMin {
+    margin-top: 30px;
+}
+
+.modal-open .modal {
+    background: rgba(0, 0, 0, 0.6);
+}
+
+
+/* Pricing Section End*/
+
+.topHeader {
+    background: #091c2f;
+    color: #fff;
+    padding: 10px 0px;
+}
+
+.topHeader a {
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    display: inline-block;
+    padding: 0px 20px 0px 0px;
+    -webkit-transition: all 600ms cubic-bezier(0.77, 0, 0.175, 1);
+    transition:         all 600ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.topHeader a:hover{
+    opacity: 0.5;
+    -webkit-transition: all 600ms cubic-bezier(0.77, 0, 0.175, 1);
+    transition:         all 600ms cubic-bezier(0.77, 0, 0.175, 1);
+}
+.emailiconTop {
+    margin-right: 5px;
+}
+.fiveOptionBox ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.fiveOptionBox{ overflow: hidden;}
+.floatRight{ float: right;}
+.PricingWrapper{
+    overflow: hidden;
+}
+.PricingTop:before{
+    left: 50%;
+    margin-left: -125px;
+}
+.LoginInner{
+    width: 100%;
+    max-width: 450px;
+}
+
+
+
+
+@media(max-width: 767px;){
+    .navbar.navbar-inverse .navbar-header{
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}
+
+
+
+
+
+
+

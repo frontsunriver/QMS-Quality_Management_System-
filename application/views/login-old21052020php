@@ -1,0 +1,308 @@
+<style>
+
+	label {
+
+		font-size: 13px;
+
+	}
+
+
+
+	.help-block > a {
+
+		font-size: 12px;
+
+	}
+
+
+
+	.help-block > a:hover {
+
+		box-shadow: none;
+
+		transition: initial;
+
+	}
+
+	small > p {
+
+		color: red;
+
+		font-size: 14px;
+
+		font-weight: bold;
+
+	}
+
+	.content-divider > span {
+
+		background-color: white;
+
+	}
+
+
+
+
+
+</style>
+
+
+
+<section class="LoginBox custom-light">
+
+	<form class="wow zoomIn" id="login_form" action="<?= base_url('auth/login') ?>" method="post">
+
+		<div class="login-form">
+
+			<div class="text-center">
+
+				<div class="icon-object border-warning-400 text-warning-400"><i class="icon-people"></i></div>
+
+				<h5 class="content-group-lg">Login to your account
+
+					<small class="display-block">
+
+						<?= validation_errors() ?>
+
+						<?= isset($flash) ? "<p>{$flash['msg']}</p>" : '' ?>
+
+					</small>
+
+				</h5>
+
+			</div>
+
+			<div class="form-group has-feedback has-feedback-left">
+
+				<input type="text" class="form-control input-lg" name="login[username]" placeholder="Username" />
+
+				<div class="form-control-feedback">
+
+					<i class="icon-user text-muted"></i>
+
+				</div>
+
+			</div>
+
+			<div class="form-group has-feedback has-feedback-left">
+
+				<input type="password" class="form-control input-lg" name="login[password]" placeholder="Password" />
+
+				<div class="form-control-feedback">
+
+					<i class="icon-lock2 text-muted"></i>
+
+				</div>
+
+			</div>
+
+			<div class="form-group login-options">
+
+				<div class="row">
+
+					<div class="col-sm-6">
+
+						<label class="checkbox-inline">
+
+							<input type="checkbox" class="styled" checked="checked" />Remember
+
+						</label>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="row">
+
+				<div class="col-md-12">
+
+					<div class="radio" style="margin-top: 0px;">
+
+						<label>
+
+							<input type="radio" name="usertype" class="control-custom" value="admin" checked />
+
+								Super Admin
+
+						</label>
+
+					</div>
+
+					<div class="radio">
+
+						<label>
+
+							<input type="radio" name="usertype" class="control-warning" value="consultant" />
+
+							Admin
+
+						</label>
+
+					</div>
+
+					<div class="radio">
+
+						<label>
+
+							<input type="radio" name="usertype" class="control-warning" value="executive" />
+
+							Executive
+
+						</label>
+
+					</div>
+
+					<div class="radio">
+
+						<label>
+
+							<input type="radio" name="usertype" class="control-info" value="process_owner" />
+
+							Process Owner/SME
+
+						</label>
+
+					</div>
+
+					<div class="radio">
+
+						<label>
+
+							<input type="radio" name="usertype" class="control-info" value="employee" />
+
+							Risk Monitor
+
+						</label>
+
+					</div>
+
+					<div class="radio">
+
+						<label>
+
+							<input type="radio" name="usertype" class="control-info" value="monitor" />
+
+							Production Manager/Monitor/Supervisor
+
+						</label>
+
+					</div>
+
+					<!-- <div class="radio">
+
+						<label>
+
+							<input type="radio" name="usertype" class="control-info" value="inspector" />
+
+							Inspector/Monitor
+
+						</label>
+
+					</div> -->
+
+					<div class="radio">
+
+						<label>
+
+							<input type="radio" name="usertype" class="control-info" value="procurement" />
+
+							Procurement
+
+						</label>
+
+					</div>
+
+					<div class="radio">
+
+						<label>
+
+							<input type="radio" name="usertype" class="control-info" value="warehousing" />
+
+							Warehousing
+
+						</label>
+
+					</div>
+
+					<div class="radio">
+
+						<label>
+
+							<input type="radio" name="usertype" class="control-info" value="sales" />
+
+							Sales
+
+						</label>
+
+					</div>
+
+					<div class="radio">
+
+						<label>
+
+							<input type="radio" name="usertype" class="control-info" value="manufacturing" />
+
+							Manufacturing
+
+						</label>
+
+					</div>
+					<div class="custom-capcha">
+						<script src='https://www.google.com/recaptcha/api.js'></script> 
+						<div class="g-recaptcha" data-sitekey="6LeMZPkUAAAAAOY59BjLyKtYXFOH3YU4QNGKWSw4"></div> 
+						<div id="errormessage"></div> 
+					</div>
+				</div>
+				
+
+			</div>
+
+			<div class="form-group">
+
+				<a href="javascript:login()" class="btn bg-slate btn-block btn-lg content-group">Login <i class="icon-arrow-right14 position-right"></i></a>
+
+			</div>
+
+			<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
+
+			<a href="<?= base_url('auth/register') ?>" class="btn bg-slate btn-block btn-lg content-group">Register</a>
+
+			<span class="help-block text-center">
+
+				By continuing, you're confirming that you've read and agree to our <a href="#">Terms and Conditions</a> and <a href="#">Cookie Policy</a>
+
+			</span>
+
+		</div>
+
+	</form>
+
+</section>
+
+
+
+<script>
+	function login(){
+if(grecaptcha.getResponse() == "") { 
+                 jQuery("#errormessage").text("Please Fill The Google Captcha");
+              }
+              else{
+              		console.log('Else Submit Form Now');
+              	    //document.login_form.submit();
+              	    $("#login_form").submit();
+              } 
+
+}
+	$(function() {
+
+		// Style checkboxes and radios
+
+		$(".styled").uniform();
+
+
+
+	});
+
+</script>

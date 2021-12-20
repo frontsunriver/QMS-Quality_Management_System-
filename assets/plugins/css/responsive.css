@@ -1,0 +1,152 @@
+@media (max-width: 1200px) {
+    .topHeader .col-sm-6{
+        width: 100%;
+        text-align: center;
+    }
+    .navbar-inverse .navbar-nav>li>a{
+        padding: 10px;
+    }
+    .navbar-inverse .navbar-nav>li>.Login{
+        margin-left: 20px;
+        min-width: auto;
+        padding: 10px 25px;
+    }
+
+
+}
+
+
+
+@media (max-width: 991px) {
+    .container {
+        width: 100%;
+    }
+    .headerHero .col-xs-12{
+        width: 100%;
+    }
+    .headerCaption h2{ text-align: center;}
+    .headerCaption{ padding: 0px; margin:40px 0 0 0px; text-align: center;}
+    .headerVideo{ margin: 0px; width: 100%;}
+    .fiveOptionBox ul>li{ font-size: 14px;}
+
+    footer .col-xs-2{ width: 100%; text-align: center;}
+    .Footer-Left{ float: left; text-align: center; width: 100%; margin-bottom: 20px;}
+    footer .col-sm-4, footer .col-sm-6{ width: 50%;}
+    img{
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+    .fiveOptionBox ul{
+        display: block;
+    }
+    .fiveOptionBox ul>li{ float: left; width: 33.33%; height: 130px;}
+}
+
+@media (max-width: 780px) {
+    .navbar-inverse .navbar-nav>li>a{   
+        padding: 9px;
+    }
+}
+@media (max-width: 768px) {
+    .indexAbout .col, .aboutInfo .col{ width: 100%; float: left; padding: 0px 15px;} 
+    .indexAbout .aboutInfoBox, .aboutInfoBox, .whoWeServe .aboutInfoBox{
+        padding:40px 0px;
+        max-width:100%;
+        margin: 0px;
+    }
+    .contractsPanelBox{ margin: 0px;}
+    .lightBlueSection{ padding-top: 40px;}
+    .indexAbout .aboutBgImg, .aboutBgImg{
+        height: 400px;
+        background-position: top center;
+    }
+    .contractsPanelBox { margin-bottom: 50px; box-shadow:none;}
+    .contractsPanelBox img{
+        box-shadow: 0px 20px 80px rgba(0, 0, 0, 0.2);
+    }
+    footer .col-sm-4, footer .col-sm-6{
+        width: 100%;
+        margin-bottom: 30px;
+    }
+    .navbar-inverse .navbar-toggle{
+        background-color: #091c2f;
+        border-color: #091c2f;
+    }
+    .navbar-nav{ margin: 0px; padding: 20px 0px;}
+    .navbar-collapse{
+        background: #fff;
+        position: absolute;
+        z-index: 9999;
+        width: 100%;
+        border: none;
+        top: 100%;
+    }
+    .Submenu{ width: 100%; position: relative; padding: 0px;}
+    .navbar-inverse .navbar-nav>li>a, .Submenu li a{
+        text-align: center;
+    }
+    .topHeader a{ line-height: 2;}
+    .solutionsSection{
+        background-size: auto;
+    }
+}
+@media (max-width: 767px) {
+
+    .PaymentInner{ max-width: 400px; width: 100%;}
+    .PricingTop:before{
+        margin-left: -220px;
+        border-width: 25px 220px 0 220px;
+    }
+}
+
+
+
+@media (max-width: 640px) {
+    .officeAddressBox .nav-tabs{
+        float: none;
+        overflow-x: scroll;
+        width: 100%;
+        height: 75px; 
+    }
+    .officeAddressBox .nav-tabs>li{    display: table-cell;
+        float: none;
+        margin: 0;
+        padding: 0;
+        vertical-align: middle;
+        width: 200px; }
+}
+
+@media (max-width: 600px) {
+    .successInfo{ width: 100%;}
+    .solutionsBox{
+        width: 100%;
+    }
+    .Footer_Menu, .contactFtr{ width: 100%;}
+    .officeInfo li{width: 100%;}
+    .Pricing_Section .tab-content .col-xs-6{
+        width: 100%;
+    }
+    .PricingTop:before{
+        margin-left: -220px;
+        border-width: 25px 220px 0 220px;
+    }
+}
+
+@media (max-width: 480px) {
+
+
+    .fiveOptionBox ul>li{ float: left; width: 50%; height: 130px;}
+    .btn_blue1 {
+
+        margin: 20px 0px 0px 10px;
+
+    }
+
+
+
+}
+
+@media (max-width: 375px) {
+    .fiveOptionBox ul>li{   width: 100%; height: auto; padding: 15px 0px;}
+}
