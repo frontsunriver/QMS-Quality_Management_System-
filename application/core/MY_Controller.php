@@ -20,23 +20,27 @@ class MY_Controller extends BaseController//CI_Controller
     $class = $this->uri->segment(1);
     $func = $this->uri->segment(2);
     $user = $this->session->userdata('user');
-
     if (!$user) {
       if ($class != 'welcome' && $class != 'auth') {
-        $this->redirect('welcome');
+        $this->redirect('auth/login');
         die;
       }
     } else {
       if ($class == 'auth' && $func == 'login'){
-        $this->redirect('welcome');
+        $this->redirect('welcome/dashboard');
         die;
       } else if (($class == 'manufacture' && $user->type != 'manufacturing' && $user->type != 'monitor')
           || ($class == 'warehouse' && $user->type != 'warehousing')
           || ($class == 'procurement' && $user->type != 'procurement')) {
         $this->redirect('welcome/dashboard');
         die;
+      } else if ($class == '') {
+        $this->redirect('welcome/dashboard');
+        die;
+      } else if ($class == 'auth' && $func == 'adminauth'){
+        $this->redirect('welcome/dashboard');
+        die;
       }
-
       $this->mUser = $user;
     }
   }

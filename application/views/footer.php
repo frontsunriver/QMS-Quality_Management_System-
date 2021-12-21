@@ -10,7 +10,7 @@
 							<li><a href="https://www.youtube.com/"><img src="<?php echo base_url()?>assets/home/Images/youtube.png" alt=""></a></li>
 							<li><a href="https://www.instagram.com"><img src="<?php echo base_url()?>assets/home/Images/instagram.png" alt=""></a></li>
 						</ul>
-						<span class="SubText">© Quality Circle, Inc. 2018</span>
+						<span class="SubText">© Quality Circle, Inc. 2021</span>
 					</div>
 					<!--Footer-Left-->
 				</div>
@@ -31,7 +31,7 @@
 						<li><a href="#">Virtual Academy</a></li>
 					</ul>
 				</div>
-				<div class="col-sm-6 col-xs-6 col-md-6">
+				<!-- <div class="col-sm-6 col-xs-6 col-md-6">
 					<h2 class="ftrTitle">Office Location</h2>
 					<div class="contactFtr">
 					<h5>United States</h5>
@@ -58,7 +58,7 @@
 						<p><strong>Phone</strong> 1-876-860-711</p>
 					</div>
 					
-				</div>
+				</div> -->
 				</div>
 				<!--col-sm-6-->
 			</div>

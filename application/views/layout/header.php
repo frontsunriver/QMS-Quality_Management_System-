@@ -37,12 +37,17 @@
 <body>
 	<div class="Header">
 		<div class="topHeader">
-			<div class="container">
+			<div class="container-fluid">
 				<div class="row">
 					<div class="col-lg-6 col-sm-6 col-xs-12">
-						<a href="mailto:support@qualitycircleint.com"><i class="fas fa-envelope emailiconTop"></i>support@qualitycircleint.com</a>
-						<a href="tel:19037818111"><img src="<?= base_url(IMG_URL . 'home/united-states.png') ?>" class="emailiconTop"> 1-903-781-8111</a>
-						<a href="tel:18769601111"><img src="<?= base_url(IMG_URL . 'home/jamaica.png') ?>" class="emailiconTop"> 1-876-960-1111</a>
+						<a href="mailto:support@qualitycircleint.com">support@ims99.com</a>
+						<!-- <a href="tel:19037818111"><img src="<?= base_url(IMG_URL . 'home/united-states.png') ?>" class="emailiconTop"> 1-903-781-8111</a>
+						<a href="tel:18769601111"><img src="<?= base_url(IMG_URL . 'home/jamaica.png') ?>" class="emailiconTop"> 1-876-960-1111</a> -->
+					</div>
+					<div class="col-lg-6 col-sm-6 col-xs-12" style="text-align: right;">
+						<span>IMS COKPIT</span>
+						<!-- <a href="tel:19037818111"><img src="<?= base_url(IMG_URL . 'home/united-states.png') ?>" class="emailiconTop"> 1-903-781-8111</a>
+						<a href="tel:18769601111"><img src="<?= base_url(IMG_URL . 'home/jamaica.png') ?>" class="emailiconTop"> 1-876-960-1111</a> -->
 					</div>
 				</div>
 			</div>
@@ -55,31 +60,30 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="<?= base_url('welcome') ?>"><img src="<?= base_url(IMG_URL . 'home/logo-top.png') ?>"></a>
+					<!-- <a class="navbar-brand" href="<?= base_url('welcome') ?>"><img src="<?= base_url(IMG_URL . 'home/logo-top.png') ?>"></a> -->
 				</div>
 				<div class="collapse navbar-collapse" id="myNavbar">
 					<ul class="nav navbar-nav navbar-right nil">
-						<li>
+						<!-- <li>
 							<a class="<?= $menu_title == 'home' ? 'active' : '' ?>" href="<?= base_url('welcome') ?>">Home</a>
 						</li>
 						<?php if (isset($user) && $user->type == 'consultant' && ($user->plan_type == 'real' || $user->plan_type == 'trial')) : ?>
 							<li>
 								<a class="<?= $menu_title == 'Upgrade'? 'active' : '' ?>" href="<?= base_url('auth/update_process') ?>">Pricing</a>
 							</li>
-						<?php endif; ?>
-						<li>
+						<?php endif; ?> -->
+						<!-- <li>
 							<a href="#">Smart Solutions</a>
 							<ul class="Submenu">
 								<li><a href="https://fsscverificationsoftware.com/">Verification Software</a></li>
 								<li><a href="https://isogapauditsoftware.com/">Gap Audit Software</a></li>
 								<li><a href="http://isoprocessbasedauditexperts.com/">Process Auditing Software</a></li>
-								<!-- <li><a href="#">Contract Signing Software</a></li> -->
 								<li><a href="https://www.gosmartacademy.com/">Virtual Academy</a></li>
 							</ul>
-						</li>
-						<li>
+						</li> -->
+						<!-- <li>
 							<a class="<?= $menu_title == 'aboutus' ? 'active' : '' ?>" href="<?= base_url('welcome/aboutus') ?>">About Us</a>
-						</li>
+						</li> -->
 						<?php if (!$isLogged) : ?>
 							<li>
 								<a class="<?php echo $menu_title && $menu_title == 'signup'? 'header_menu_active':''?>" href="<?php echo base_url('auth/register')?>">Sign Up</a>

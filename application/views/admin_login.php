@@ -150,7 +150,7 @@
 
 <section class="LoginBox custom-light">
 
-	<form class="wow zoomIn" id="login_form" action="<?= $otp_status ? base_url('auth/verifyMethod'):base_url('auth/login') ?>" method="post">
+	<form class="wow zoomIn" id="login_form" action="<?= $otp_status ? base_url('auth/verifyMethod'):base_url('auth/adminauth') ?>" method="post">
 
 		<div class="login-form">
 
@@ -215,12 +215,12 @@
 				</div>
 
 			</div>
-			<input type="hidden" name="usertype" value="employee">
+
 			<div class="row">
 
 				<div class="col-md-12">
 
-					<!-- <div class="radio" style="margin-top: 0px;">
+					<div class="radio" style="margin-top: 0px;">
 
 						<label>
 
@@ -242,8 +242,8 @@
 
 						</label>
 
-					</div> -->
-	
+					</div>
+
 					<!-- <div class="radio">
 
 						<label>
@@ -360,22 +360,6 @@
 				<a href="javascript:login()" class="btn bg-slate btn-block btn-lg content-group">Login <i class="icon-arrow-right14 position-right"></i></a>
 
 			</div>
-
-			<div class="content-divider text-muted form-group"><span>Don't have an account?</span></div>
-
-			<a href="<?= base_url('auth/register') ?>" class="btn bg-slate btn-block btn-lg content-group">Register</a>
-
-
-			<div class="content-divider text-muted form-group"><span>Forgot your account?</span></div>
-
-			<a href="<?= base_url('auth/forgot_pass') ?>" class="btn bg-slate btn-block btn-lg content-group">Forget Account (Username & Password)</a>
-
-			<span class="help-block text-center">
-
-				By continuing, you're confirming that you've read and agree to our <a href="#">Terms and Conditions</a> and <a href="#">Cookie Policy</a>
-
-			</span>
-
 		</div>
 
 	</form>

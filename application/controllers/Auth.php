@@ -10,8 +10,9 @@ class Auth extends MY_Controller
 		$param = $this->input->post('login');
 
         $this->login_limit->remove_penalty();
+        $url = strtolower($_SERVER['REQUEST_URI']);
+        $pos = strpos($url, 'adminauth');
 		if ($param) {
-            
             /*=-=-= limit login attempt start -=-=-*/
             
             // $this->login_limit->check_user_valid();
@@ -20,7 +21,6 @@ class Auth extends MY_Controller
             /*=-=-= verification on/off start -=-=-*/
             
 		    if ($this->settings->otp_verification){
-
                 $user_OTP       = $this->input->post('code');
                 $user_OTP       = is_array($user_OTP) ? $user_OTP:array();
                 $_POST['code']  = $user_OTP = implode('',$user_OTP);
@@ -50,7 +50,11 @@ class Auth extends MY_Controller
                 $this->form_validation->set_rules($validation);
 
                 if (!$this->form_validation->run()){
-                    $this->render('login');
+                    if ($pos !== false) {
+                        $this->render('admin_login');    
+                    }else{
+                        $this->render('login');
+                    }
                 }else{
                     try{
                         $type               = _decode($this->input->post('u_t'));
@@ -178,7 +182,323 @@ class Auth extends MY_Controller
                         $this->session->set_flashdata('flash', array(
                             'msg' => 'Invalid credentials'
                         ));
+                        if ($pos !== false) {
+                            $this->render('admin_login');    
+                        }else{
+                            $this->render('login');
+                        }
+                    }
+                }
+            }else{
+                $validation = array(
+                    array(
+                        'field' => 'login[username]',
+                        'label' => 'Username',
+                        'rules' => 'required'
+                    ), array(
+                        'field' => 'login[password]',
+                        'label' => 'Password',
+                        'rules' => 'required'
+                    )
+                );
+                $this->form_validation->set_rules($validation);
+
+                if (!$this->form_validation->run()){
+                    if ($pos !== false) {
+                        $this->render('admin_login');    
+                    }else{
                         $this->render('login');
+                    }
+                }else {
+                    
+                    $type = $this->input->post('usertype');
+                    $username = $param['username'];
+                    $password = $param['password'];
+                    $attempt  = 0;
+                    
+                    /*=-=-= After password hashed start -=-=-*/
+                    unset($param['password']);
+                    /*=-=-= After password hashed end -=-=-*/
+                    if($type == "admin"){
+                        $user = $this->Auth_model->login($param, $type);
+                        
+                        if($user && verifyHashedPassword( $password, $user->password )){
+                            $user->type = $type;
+                            $this->session->set_userdata('user', $user);
+                            $this->session->set_userdata(array(
+                                'admin_id' => $user->id,
+                                'username' => $user->username,
+                                'is_password_updated' => $user->isPasswordUptd,
+                                'user_type' => $type
+                            ));
+                            /*=-=- refresh attempts =-=-*/
+                            $this->login_limit->refresh_attempts();
+                        }else{
+                            $user = false;
+                        }
+
+                    }
+                    else if($type == 'consultant' || $type == "executive"){
+                        
+                        $user = $this->Auth_model->login($param, $type);
+                        if($user && verifyHashedPassword( $password, $user->password )){
+                            if($user->is_active == 0) {
+                                $this->session->set_flashdata('flash', array(
+                                    'msg' => 'Please verifiy your email to access the system'
+                                ));
+                                redirect('auth/login');
+                                exit;
+                            }
+                            if($user->is2FAEnabled == 1) {
+                                $user->type = $type;
+                                $this->session->set_userdata('temp_user', $user);
+                                redirect('auth/securityAuth');
+                            }
+                            $user->type = $type;
+                            $this->session->set_userdata('user', $user);
+                            $this->session->set_userdata(array(
+                                'consultant_id' => $user->consultant_id,
+                                'username' => $user->username,
+                                'user_type' => $user->type,
+                                'com_status' => $user->status,
+                                'is_password_updated' => $user->isPasswordUptd
+                            ));
+                            /*=-=- refresh attempts =-=-*/
+                            // $this->login_limit->refresh_attempts();
+                        }else{
+                            $user = false;
+                        }
+                    } else{
+                        $user = $this->Auth_model->employee_login($username, $type);
+                        print_r($username);
+                        exit;
+                        if($user && verifyHashedPassword( $password, $user->password )){
+                            $user->type = $type;
+                            $this->session->set_userdata('user', $user);
+                            $this->session->set_userdata(array(
+                                'employee_id' => $user->employee_id,
+                                'username' => $user->username,
+                                'consultant_id' => $user->consultant_id,
+                                'user_type' => $user->type,
+                                'com_status' => $user->status,
+                                'is_password_updated' => $user->isPasswordUptd
+                            ));
+                            /*=-=- refresh attempts =-=-*/
+                            $this->login_limit->refresh_attempts();
+                        }else{
+                            $user = false;
+                        }
+                    }
+                    if($user){
+                        $this->redirect('welcome/dashboard');
+                    }
+                    else {
+                        /*=-=-= limit login attempt start -=-=-*/
+                        $this->login_limit->add_attempt();
+                        /*=-=-= limit login attempt end -=-=-*/
+                        $this->session->set_flashdata('flash', array(
+                            'msg' => 'Invalid Credentials'
+                        ));
+                        echo $pos;
+                        exit;
+                        if ($pos !== false) {
+                            $this->render('admin_login');    
+                        }else{
+                            $this->render('login');
+                        }
+                    }
+                }
+            }
+		} else{
+            $this->render('login');
+        }
+	}
+
+    public function adminAuth() {
+        $this->mHeader['title']         = 'Login';
+		$this->mHeader['menu_title']    = 'login';
+        $this->mHeader['otp_status']    = $this->settings->otp_verification ? true:false;
+		$param = $this->input->post('login');
+
+        $this->login_limit->remove_penalty();
+        $url = strtolower($_SERVER['REQUEST_URI']);
+        $pos = strpos($url, 'adminauth');
+		if ($param) {
+            /*=-=-= limit login attempt start -=-=-*/
+            
+            // $this->login_limit->check_user_valid();
+            /*=-=-= limit login attempt end -=-=-*/
+
+            /*=-=-= verification on/off start -=-=-*/
+            
+		    if ($this->settings->otp_verification){
+
+                $user_OTP       = $this->input->post('code');
+                $user_OTP       = is_array($user_OTP) ? $user_OTP:array();
+                $_POST['code']  = $user_OTP = implode('',$user_OTP);
+
+                $validation = array(
+                    array(
+                        'field' => 'login[u]',
+                        'label' => 'Username',
+                        'rules' => 'required'
+                    ), array(
+                        'field' => 'login[p]',
+                        'label' => 'Password',
+                        'rules' => 'required'
+                    ), array(
+                        'field' => 'u_t',
+                        'label' => 'User Type',
+                        'rules' => 'required',
+                        'errors' => array('required' => 'Please Select %s.'),
+                    ), array(
+                        'field' => 'code',
+                        'label' => 'OTP',
+                        'rules' => 'required|exact_length[4]',
+                        'errors' => array('required' => 'Invalid %s.'),
+                    )
+                );
+
+                $this->form_validation->set_rules($validation);
+
+                if (!$this->form_validation->run()){
+                    if ($pos !== false) {
+                        $this->render('admin_login');    
+                    }else{
+                        $this->render('login');
+                    }
+                }else{
+                    try{
+                        $type               = _decode($this->input->post('u_t'));
+                        $username           = _decode($param['u']);
+                        $password           = _decode($param['p']);
+                    }catch (Exception $e){
+                        $this->session->set_flashdata('flash', array(
+                            'msg' => 'Na Kakka Halii Na'
+                        ));
+                        $this->redirect('auth/verification');
+                        return;
+                    }
+                    $param['username']  = $username;
+                    unset($param['p'],$param['u']);
+
+                    if($type == "admin"){
+                        $user = $this->Auth_model->login($param, $type);
+                        if($user && verifyHashedPassword( $password, $user->password )){
+                            /*=-=-=- check is OTP Valid Start =-=-=-*/
+                            $verified = $this->OTPVerification->get_auth_OTP(array(
+                                'model_name'    => 'admin',
+                                'model_id'      => $user->id,
+                                'otp'           => $user_OTP,
+                            ));
+                            if (!$verified){
+                                $this->session->set_flashdata('flash', array(
+                                    'msg' => 'Invalid OTP'
+                                ));
+                                $this->redirect('auth/verification');
+                            }
+                            /*=-=-=- check is OTP Valid end =-=-=-*/
+                            $user->type = $type;
+                            $this->session->set_userdata('user', $user);
+                            $this->session->set_userdata(array(
+                                'admin_id' => $user->id,
+                                'username' => $user->username,
+                                'is_password_updated' => $user->isPasswordUptd,
+                                'user_type' => $type
+                            ));
+                            /*=-=- refresh attempts =-=-*/
+                            $this->login_limit->refresh_attempts();
+                        }else{
+                            $user = false;
+                        }
+                    }
+                    else if($type == 'consultant' || $type == "executive"){
+                        $user = $this->Auth_model->login($param, $type);
+                        if($user && verifyHashedPassword( $password, $user->password )){
+                            /*=-=-=- check is OTP Valid Start =-=-=-*/
+                            if ($type == "executive"){
+                                $model_id   = 'employee_id';
+                            }else{
+                                $model_id   = 'consultant_id';
+                            }
+                            $verified = $this->OTPVerification->get_auth_OTP(array(
+                                'model_name'    => $type,
+                                'model_id'      => $user->$model_id,
+                                'otp'           => $user_OTP,
+                            ));
+                            if (!$verified){
+                                $this->session->set_flashdata('flash', array(
+                                    'msg' => 'Invalid OTP'
+                                ));
+                                $this->redirect('auth/verification');
+                            }
+                            /*=-=-=- check is OTP Valid end =-=-=-*/
+                            if($user->is2FAEnabled == 1) {
+                                $user->type = $type;
+                                $this->session->set_userdata('temp_user', $user);
+                                redirect('auth/securityAuth');
+                            }
+                            $user->type = $type;
+                            $this->session->set_userdata('user', $user);
+                            $this->session->set_userdata(array(
+                                'consultant_id' => $user->consultant_id,
+                                'username' => $user->username,
+                                'user_type' => $user->type,
+                                'com_status' => $user->status,
+                                'is_password_updated' => $user->isPasswordUptd
+                            ));
+                            /*=-=- refresh attempts =-=-*/
+                            $this->login_limit->refresh_attempts();
+                        }else{
+                            $user = false;
+                        }
+                    } else{
+                        $user = $this->Auth_model->employee_login($username, $type);
+                        if($user && verifyHashedPassword( $password, $user->password )){
+                            /*=-=-=- check is OTP Valid Start =-=-=-*/
+                            $verified = $this->OTPVerification->get_auth_OTP(array(
+                                'model_name'    => $type,
+                                'model_id'      => $user->employee_id,
+                                'otp'           => $user_OTP,
+                            ));
+                            if (!$verified){
+                                $this->session->set_flashdata('flash', array(
+                                    'msg' => 'Invalid OTP'
+                                ));
+                                $this->redirect('auth/verification');
+                            }
+                            /*=-=-=- check is OTP Valid end =-=-=-*/
+                            $user->type = $type;
+                            $this->session->set_userdata('user', $user);
+                            $this->session->set_userdata(array(
+                                'employee_id' => $user->employee_id,
+                                'username' => $user->username,
+                                'consultant_id' => $user->consultant_id,
+                                'user_type' => $user->type,
+                                'com_status' => $user->status,
+                                'is_password_updated' => $user->isPasswordUptd
+                            ));
+                            /*=-=- refresh attempts =-=-*/
+                            $this->login_limit->refresh_attempts();
+                        }else{
+                            $user = false;
+                        }
+                    }
+                    if($user){
+                        $this->redirect('welcome/dashboard');
+                    }
+                    else {
+                        /*=-=-= limit login attempt start -=-=-*/
+                        $this->login_limit->add_attempt();
+                        /*=-=-= limit login attempt end -=-=-*/
+                        $this->session->set_flashdata('flash', array(
+                            'msg' => 'Invalid credentials'
+                        ));
+                        if ($pos !== false) {
+                            $this->render('admin_login');    
+                        }else{
+                            $this->render('login');
+                        }
                     }
                 }
             }else{
@@ -197,7 +517,11 @@ class Auth extends MY_Controller
                 $this->form_validation->set_rules($validation);
 
                 if (!$this->form_validation->run()){
-                    $this->render('login');
+                    if ($pos !== false) {
+                        $this->render('admin_login');    
+                    }else{
+                        $this->render('login');
+                    }
                 }else {
                     
                     $type = $this->input->post('usertype');
@@ -286,14 +610,18 @@ class Auth extends MY_Controller
                         $this->session->set_flashdata('flash', array(
                             'msg' => 'Invalid Credentials'
                         ));
-                        $this->render('login');
+                        if ($pos !== false) {
+                            $this->render('admin_login');    
+                        }else{
+                            $this->render('login');
+                        }
                     }
                 }
             }
 		} else{
-            $this->render('login');
+            $this->render('admin_login');
         }
-	}
+    }
 
     public function verification(){
         if (!$this->settings->otp_verification){
@@ -518,7 +846,6 @@ class Auth extends MY_Controller
         if (!$this->settings->otp_verification && empty($this->input->post('v'))){
             redirect('Auth/login');
         }
-
         $this->load->library('form_validation');
         $this->load->library('phone_RK');
 
@@ -682,118 +1009,119 @@ class Auth extends MY_Controller
 		// $this->sendemail('team.asl398@yopmail.com', 'User sign up for subscription', 'Demo Mail', 'Demo Subject');
 
 		// exit;
+        $this->mHeader['title'] = 'Register';
+        $this->mHeader['menu_title'] = 'register';
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
 
+            $param = $this->input->post('register');
+            $email = $param['email'];
+            $username = $param['username'];
 
-
-		$this->mHeader['title'] = 'Register';
-		$this->mHeader['menu_title'] = 'register';
-
-		$param = $this->input->post('register');
-		$email = $param['email'];
-		$username = $param['username'];
-
-		if ($param) {
-			$validation = [
-				[
-					'field' => 'register[consultant_name]',
-					'label' => 'Company Name',
-					'rules' => 'required'
-				], [
-					'field' => 'register[username]',
-					'label' => 'Username',
-					'rules' => 'required|is_unique[consultant.username]'
-				], [
-                    'field' => 'register[email]',
-                    'label' => 'Email',
-                    'rules' => 'required|valid_email|is_unique[consultant.email]'
-                ], [
-                    'field' => 'register[phone]',
-                    'label' => 'Mobile',
-                    'rules' => 'required|is_unique[consultant.phone]'
-                ], [
-					'field' => 'register[password]',
-					'label' => 'Password',
-					'rules' => 'required|min_length[8]|callback_password_check'
-				], [
-					'field' => 'register[repassword]',
-					'label' => 'Password',
-					'rules' => 'required|min_length[8]|callback_password_check'
-				], [
-					'field' => 'register[repassword]',
-					'label' => 'Password Confirmation',
-					'rules' => 'required|matches[register[password]]'
-				]
-			];
-			$this->form_validation->set_rules($validation);
-            /*=-=- check user mobile number valid start =-=-*/
-            $phone          = $this->input->post('register[phone]');
-            $phone_response = $this->phone_rk->checkPhoneNumber($phone);
-            /*=-=- check user mobile number valid end =-=-*/
-			if (!$this->form_validation->run() || stristr($email, "<script>") != FALSE || stristr($username, "<script>") != FALSE || !$phone_response['success']) {
-                if (!$phone_response['success']){
-                    $this->session->set_flashdata('message', $phone_response['message']);
-                }
-                $this->render('Register/register');
-            }else {
-				// $param['password'] = md5($param['password']);
-				$activation_code    = $this->serialkey();
-				$param['created_at']= date('Y-m-d');
-				$param['user_type'] = 'consultant';
-				$param['logo']      = 1;
-				unset($param['repassword']);
-
-				$param['is_active'] = 0;
-				$param['activation_code'] = $activation_code;
-
-				$param['password'] = getHashedPassword($param['password']);
-
-				$param['isPasswordUptd'] = 1;
-
-
-				$consultant_id = $this->Auth_model->consultant_register($param);
-
-
-				if ($consultant_id > 0) {
-					//----------------------------------------------send email----------------------------------------------
-					$email_temp = $this->getEmailTemp('User sign up for subscription');
-					$email_temp['message'] = str_replace("{USERNAME}", $username, $email_temp['message']);
-					$email_temp['message'] = str_replace("{COURSE_NAME}", 'isoimplementationsoftware.com', $email_temp['message']);
-					$email_temp['message'] = str_replace("{LOGO}", "<img src='cid:logo'>", $email_temp['message']);
-					$this->sendemail($email, 'User sign up for subscription', $email_temp['message'], $email_temp['subject']);
-					//---------------------------------------------------------------------------------------------------------
-
-				//-------------------Send email to registered user for Email verificaiton  ----------------------
-
-				$verificaiton_link = base_url().'index.php/Auth/verifyEmail/'.$activation_code;
-				$email_tempU = $this->getEmailTemp('email verification authentication');
-
-				$email_tempU['message'] = str_replace("{username}", $username, $email_tempU['message']);
-				$email_tempU['message'] = str_replace("{verification_link}", $verificaiton_link, $email_tempU['message']);
-				// $this->sendemail($email, 'Email Verification', $email_tempU['message'], $email_tempU['subject']);
-				$this->send_mail($email, 'Email Verification', $email_tempU['message'], $email_tempU['subject']);
-				//-------------------------------------------------------
-
-                    //---------------------------------------------- send sms ----------------------------------------------
-                    if (!empty($phone) && $this->settings->otp_verification){
-                        $phone = formatMobileNumber($phone, true);
-                        /*=-=- check user mobile number valid start =-=-*/
-                        $phone_response = $this->phone_rk->checkPhoneNumber($phone);
-                        if ($phone_response['success']){
-                            $message = "Hi {$username}".PHP_EOL;
-                            $message.= "Congratulations you have signed up to Quality Circle’s Process Risk(Strategic and Operational) Based Implementation Software. The software is the first of its kind globally. It is a cloud based automated tool which enables users to monitor established controls so data can be harvested for useful analytics and evaluation by top management to drive continual improvement.";
-                            $this->twill_rk->sendMsq($phone,$message);
-                        }
+            if ($param) {
+                $validation = [
+                    [
+                        'field' => 'register[consultant_name]',
+                        'label' => 'Company Name',
+                        'rules' => 'required'
+                    ], [
+                        'field' => 'register[username]',
+                        'label' => 'Username',
+                        'rules' => 'required|is_unique[consultant.username]'
+                    ], [
+                        'field' => 'register[email]',
+                        'label' => 'Email',
+                        'rules' => 'required|valid_email|is_unique[consultant.email]'
+                    ], [
+                        'field' => 'register[phone]',
+                        'label' => 'Mobile',
+                        'rules' => 'required|is_unique[consultant.phone]'
+                    ], [
+                        'field' => 'register[password]',
+                        'label' => 'Password',
+                        'rules' => 'required|min_length[8]|callback_password_check'
+                    ], [
+                        'field' => 'register[repassword]',
+                        'label' => 'Password',
+                        'rules' => 'required|min_length[8]|callback_password_check'
+                    ], [
+                        'field' => 'register[repassword]',
+                        'label' => 'Password Confirmation',
+                        'rules' => 'required|matches[register[password]]'
+                    ]
+                ];
+                $this->form_validation->set_rules($validation);
+                /*=-=- check user mobile number valid start =-=-*/
+                $phone          = $this->input->post('register[phone]');
+                $phone_response = $this->phone_rk->checkPhoneNumber($phone);
+                /*=-=- check user mobile number valid end =-=-*/
+                if (!$this->form_validation->run() || stristr($email, "<script>") != FALSE || stristr($username, "<script>") != FALSE || !$phone_response['success']) {
+                    if (!$phone_response['success']){
+                        $this->session->set_flashdata('message', $phone_response['message']);
                     }
+                    $this->render('Register/register');
+                }else {
+                    // $param['password'] = md5($param['password']);
+                    $activation_code    = $this->serialkey();
+                    $param['created_at']= date('Y-m-d');
+                    $param['user_type'] = 'consultant';
+                    $param['logo']      = 1;
+                    unset($param['repassword']);
 
-					$this->session->set_userdata([
-						'username' => $param['username'],
-						'consultant_id' => $consultant_id
-					]);
-					$this->redirect('auth/reg_pay_plans');
-				}
-			}
-		} else
+                    $param['is_active'] = 0;
+                    $param['activation_code'] = $activation_code;
+
+                    $param['password'] = getHashedPassword($param['password']);
+
+                    $param['isPasswordUptd'] = 1;
+
+
+                    $consultant_id = $this->Auth_model->consultant_register($param);
+
+
+                    if ($consultant_id > 0) {
+                        //----------------------------------------------send email----------------------------------------------
+                        $email_temp = $this->getEmailTemp('User sign up for subscription');
+                        $email_temp['message'] = str_replace("{USERNAME}", $username, $email_temp['message']);
+                        $email_temp['message'] = str_replace("{COURSE_NAME}", 'isoimplementationsoftware.com', $email_temp['message']);
+                        $email_temp['message'] = str_replace("{LOGO}", "<img src='cid:logo'>", $email_temp['message']);
+                        $this->sendemail($email, 'User sign up for subscription', $email_temp['message'], $email_temp['subject']);
+                        //---------------------------------------------------------------------------------------------------------
+
+                    //-------------------Send email to registered user for Email verificaiton  ----------------------
+
+                    $verificaiton_link = base_url().'index.php/Auth/verifyEmail/'.$activation_code;
+                    $email_tempU = $this->getEmailTemp('email verification authentication');
+
+                    $email_tempU['message'] = str_replace("{username}", $username, $email_tempU['message']);
+                    $email_tempU['message'] = str_replace("{verification_link}", $verificaiton_link, $email_tempU['message']);
+                    // $this->sendemail($email, 'Email Verification', $email_tempU['message'], $email_tempU['subject']);
+                    $this->send_mail($email, 'Email Verification', $email_tempU['message'], $email_tempU['subject']);
+                    //-------------------------------------------------------
+
+                        //---------------------------------------------- send sms ----------------------------------------------
+                        if (!empty($phone) && $this->settings->otp_verification){
+                            $phone = formatMobileNumber($phone, true);
+                            /*=-=- check user mobile number valid start =-=-*/
+                            $phone_response = $this->phone_rk->checkPhoneNumber($phone);
+                            if ($phone_response['success']){
+                                $message = "Hi {$username}".PHP_EOL;
+                                $message.= "Congratulations you have signed up to Quality Circle’s Process Risk(Strategic and Operational) Based Implementation Software. The software is the first of its kind globally. It is a cloud based automated tool which enables users to monitor established controls so data can be harvested for useful analytics and evaluation by top management to drive continual improvement.";
+                                $this->twill_rk->sendMsq($phone,$message);
+                            }
+                        }
+
+                        $this->session->set_userdata([
+                            'username' => $param['username'],
+                            'consultant_id' => $consultant_id
+                        ]);
+                        $this->redirect('auth/reg_pay_plans');
+                    }
+                }
+            } 
+        }else {
 			$this->render('Register/register');
+        }
 	}
 
 	public function reg_pay_plans() {
@@ -892,8 +1220,6 @@ class Auth extends MY_Controller
 				redirect('Welcome/dashboard');
 			}
 
-
-
 			$this->redirect('welcome/dashboard');
 		}
 	}
@@ -929,7 +1255,7 @@ class Auth extends MY_Controller
 
 	public function logout() {
 		$this->session->sess_destroy();
-		$this->redirect('welcome');
+		$this->redirect('login');
 	}
 
 	public function next_process2() {

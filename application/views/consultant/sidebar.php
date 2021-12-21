@@ -84,7 +84,7 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 								<!-- <li class="<?= isset($menu_title) && $menu_title == 'Library' ? 'active' : '' ?>">
 									<a href="<?= base_url('consultant/library') ?>"><i class="icon-database"></i> <span>Library</span></a></li> -->
 								<li class="<?=$ee1?>">
-									<a href="#" ><i class="icon-stack2"></i> <span>INSPECTION</span></a>
+									<a href="#" ><i class="icon-stack2"></i> <span>VERIFICATION</span></a>
 									<ul>
 										<li class="<?=$e1?>"><a href="<?= base_url('consultant/report') ?>">REPORT</a></li>
 										<li class="<?=$e2?>"><a href="<?= base_url('consultant/conduct') ?>">CONDUCT AN INSPECTION</a></li>
@@ -161,7 +161,7 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 											<a href="#"></i>Operational Rating Matrix Manage</a>
 											<ul>
 												<li class="<?=$c71?>">
-													<a href="<?= base_url('consultant/food_rating') ?>"><span>Food Rating Matrix</span></a></li>
+													<a href="<?= base_url('consultant/food_rating') ?>"><span>PARTS Rating Matrix</span></a></li>
 												<li class="<?=$c72?>">
 													<a href="<?= base_url('consultant/quality_rating') ?>"><span>Quality Rating Matrix</span></a></li>
 												<li class="<?=$c73?>">
@@ -169,9 +169,9 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 												<li class="<?=$c74?>">
 													<a href="<?= base_url('consultant/safety_rating') ?>"><span>Safety Rating Matrix</span></a></li>
 												<li class="<?=$c75?>">
-													<a href="<?= base_url('consultant/taccp_rating') ?>"><span>TACCP Rating Matrix</span></a></li>
+													<a href="<?= base_url('consultant/taccp_rating') ?>"><span>Supplier Rating Matrix</span></a></li>
 												<li class="<?=$c76?>">
-													<a href="<?= base_url('consultant/vaccp_rating') ?>"><span>VACCP Rating Matrix</span></a></li>
+													<a href="<?= base_url('consultant/vaccp_rating') ?>"><span>Others Rating Matrix</span></a></li>
 												<li class="<?=$c77?>">
 													<a href="<?= base_url('consultant/operational_risk_values') ?>"><span>Risk Values</span></a></li>
 											</ul>
@@ -180,8 +180,8 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 										
 										<li class="<?=$c10?>"><a href="<?= base_url('consultant/customer') ?>"><span>Customer</span></a></li>
 										<li class="<?=$c11?>"><a href="<?= base_url('consultant/supplier') ?>"><span>Supplier</span></a></li>
-										<li class="<?=$c12?>"><a href="<?= base_url('consultant/process') ?>"><span>Process</span></a></li>
-										<li class="<?=$c13?>"><a href="<?= base_url('consultant/pre_process') ?>"><span>PreRequisite Programs</span></a></li>
+										<li class="<?=$c12?>"><a href="<?= base_url('consultant/process') ?>"><span>IMS CORE PROCESS</span></a></li>
+										<li class="<?=$c13?>"><a href="<?= base_url('consultant/pre_process') ?>"><span>Support Process</span></a></li>
 										<li class="<?=$c14?>">
 											<a href="<?= base_url('consultant/additional_process') ?>"><span>Additional Requirements</span></a></li>
 										<li class="<?=$c15?>"><a href="<?= base_url('auth/update_process') ?>"><span> Upgrade Plan</span></a></li>

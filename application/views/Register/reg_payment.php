@@ -31,7 +31,7 @@
 						<div class="radio">
 							<label>
 								<input type="radio" name="usertype" class="control-info" value="employee" checked>
-								Stripe Payment
+								sales@ims99.com
 							</label>
 						</div>
 					</div>

@@ -110,29 +110,31 @@ class Welcome extends MY_Controller
 
 			 $this->db->where('consultant_id',$consultant_id);
          	$data['comp']=$this->db->get('consultant')->row();
-            $date1=explode('-', $data['comp']->expired);
-            $date2=explode('-', $date);
-            $ndate1=$date1[0].$date1[1].$date1[2];
-            $ndate2=$date2[0].$date2[1].$date2[2];
+            // $date1=explode('-', $data['comp']->expired);
+            // $date2=explode('-', $date);
+            // $ndate1=$date1[0].$date1[1].$date1[2];
+            // $ndate2=$date2[0].$date2[1].$date2[2];
 
-         	if ($com_status=='1' && $consultant_id!='' && $ndate1 > $ndate2) {
 
-				$this->load->view('consultant/dashboard',$data);
-			}else{
-				$this->mHeader['title'] = 'Next';
-				$this->mHeader['menu_title'] = $this->mHeader['title'];
+			$this->load->view('consultant/dashboard',$data);
+         	// if ($com_status=='1' && $consultant_id!='' && $ndate1 > $ndate2) {
 
-				$chk = $this->Employees_model->num_rows([
-					'consultant_id' => $consultant_id
-				]);
+			// 	$this->load->view('consultant/dashboard',$data);
+			// }else{
+			// 	$this->mHeader['title'] = 'Next';
+			// 	$this->mHeader['menu_title'] = $this->mHeader['title'];
 
-				$this->mContent['plans'] = $this->Plan_model->find([
-					'no_of_user >=' => $chk,
-					'is_trial' => 0
-				], ['no_of_user' => 'asc']);
+			// 	$chk = $this->Employees_model->num_rows([
+			// 		'consultant_id' => $consultant_id
+			// 	]);
 
-				$this->render('Register/register_payment_plans');
-			}
+			// 	$this->mContent['plans'] = $this->Plan_model->find([
+			// 		'no_of_user >=' => $chk,
+			// 		'is_trial' => 0
+			// 	], ['no_of_user' => 'asc']);
+
+			// 	$this->render('Register/register_payment_plans');
+			// }
          }else{
          	$this->redirect('welcome');
          }
@@ -271,6 +273,6 @@ class Welcome extends MY_Controller
 
 	public function logout() {
 		$this->session->sess_destroy();
-		redirect('welcome');
+		redirect('auth/login');
 	}
 }
