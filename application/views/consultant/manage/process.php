@@ -127,7 +127,9 @@
                         <h5 class="panel-title"><?=$title?></h5>
                     </div>
                     <div>
-                        <button type="button" id="new_out_process" class="btn btn-primary pull-right" style="margin-right: 20px;">ADD</button>
+                        <?php if($this->session->userdata('user_type') == 'consultant'):?>
+                            <button type="button" id="new_out_process" class="btn btn-primary pull-right" style="margin-right: 20px;">ADD</button>
+                        <?php endif;?>
                         <a href="<?php echo base_url(); ?>index.php/Consultant/download_content_pdf_process" class="btn btn-primary pull-right" style="margin-right: 20px;float: left;">Export</a>
                     </div>
                     <table class="table datatable-out">

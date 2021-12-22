@@ -659,8 +659,8 @@ public function customer_delete()
 //Records
 public function record()
 {
-		$data['cc1'] = 'active';
-		$data['c9'] = 'act1';
+		$data['ff1'] = 'active';
+		$data['f5'] = 'act1';
 		$consultant_id = $this->session->userdata('consultant_id');
 		if($consultant_id){
 			$data['title'] = "Records";
@@ -818,8 +818,8 @@ public function record_read($id = NULL)
 //procedures
 		public function procedure()
 		{
-				$data['cc1'] = 'active';
-				$data['c8'] = 'act1';
+				$data['ff1'] = 'active';
+				$data['f4'] = 'act1';
 				$consultant_id = $this->session->userdata('consultant_id');
 				if($consultant_id){
 					$data['title'] = "Procedures Register";
@@ -6376,8 +6376,8 @@ WHERE
 	}
 	public function process()
 	{
-		$data['cc1'] = 'active';
-		$data['c12'] = 'act1';
+		$data['ff1'] = 'active';
+		$data['f1'] = 'act1';
 		$consultant_id = $this->session->userdata('consultant_id');
 		if($consultant_id){
 			$data['title'] = "Process";
@@ -6944,8 +6944,8 @@ WHERE
 	}
 	public function pre_process()
 	{
-		$data['cc1'] = 'active';
-		$data['c13'] = 'act1';
+		$data['ff1'] = 'active';
+		$data['f2'] = 'act1';
 		$consultant_id = $this->session->userdata('consultant_id');
 		if($consultant_id){
 			$data['title'] = "PreRequisite Programs Process";
@@ -7066,8 +7066,8 @@ WHERE
 	}
 	public function additional_process()
 	{
-		$data['cc1'] = 'active';
-		$data['c14'] = 'act1';
+		$data['ff1'] = 'active';
+		$data['f3'] = 'act1';
 		$consultant_id = $this->session->userdata('consultant_id');
 		if($consultant_id){
 			$data['title'] = "Additional Requirements Process";

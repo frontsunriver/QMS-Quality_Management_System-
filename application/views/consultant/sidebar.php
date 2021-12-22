@@ -67,6 +67,12 @@ if(isset($dd1)){ $dd1=$dd1; }else{ $dd1='0'; }
 if(isset($d1)){ $d1=$d1; }else{ $d1='0'; }
 if(isset($d2)){ $d2=$d2; }else{ $d2='0'; }
 if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
+if(isset($ff1)) {$ff1 = $ff1;} else {$ff1 = '0';}
+	if(isset($f1)) {$f1 = $f1;} else {$f1 = '0';}
+	if(isset($f2)) {$f2 = $f2;} else {$f2 = '0';}
+	if(isset($f3)) {$f3 = $f3;} else {$f3 = '0';}
+	if(isset($f4)) {$f4 = $f4;} else {$f4 = '0';}
+	if(isset($f5)) {$f5 = $f5;} else {$f5 = '0';}
 ?>
 
 <div class="sidebar sidebar-main sidebar-fixed">
@@ -83,6 +89,12 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 								<!-- Main -->
 								<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
 								<li><a href="<?= base_url('welcome/consultantdashboard') ?>"><i class="icon-home4"></i> <span>DASHBOARD</span></a></li>
+								<li class="<?=$aa1?>">
+									<a href="#"><i class="icon-stack2"></i>RISK MANAGEMENT</a>
+									<ul>
+										<li class="<?=$a1?>"><a href="<?= base_url('consultant/risk_list') ?>">RISK REGISTER</a></li>
+									</ul>
+								</li>
 								<li class="<?=$ee1?>"><a href="#" ><i class="icon-stack2"></i> <span>VERIFICATION</span></a>
 									<ul>
 										<li class="<?=$e1?>"><a href="<?= base_url('consultant/report') ?>">REPORT</a></li>
@@ -91,10 +103,13 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 										<li class="<?=$e4?>"><a href="<?= base_url('consultant/traceability_log') ?>">TRACEABILITY LOG</a></li>
 									</ul>
 								</li>
-								<li class="<?=$aa1?>">
-									<a href="#"><i class="icon-stack2"></i>RISK MANAGEMENT</a>
+								<li class="<?=$ff1?>"><a href="#" ><i class="icon-stack2"></i> <span>CONTROLS</span></a>
 									<ul>
-										<li class="<?=$a1?>"><a href="<?= base_url('consultant/risk_list') ?>">RISK REGISTER</a></li>
+										<li class="<?=$f1?>"><a href="<?= base_url('consultant/process') ?>"><span>IMS CORE PROCESS</span></a></li>
+										<li class="<?=$f2?>"><a href="<?= base_url('consultant/pre_process') ?>"><span>Support Process</span></a></li>
+										<li class="<?=$f3?>"><a href="<?= base_url('consultant/additional_process') ?>"><span>Additional Requirements</span></a></li>
+										<li class="<?=$f4?>"><a href="<?= base_url('consultant/procedure') ?>"><i class="icon-stack2"></i>Documented Information(Maintained)</a></li>
+										<li class="<?=$f5?>"><a href="<?= base_url('consultant/record') ?>"><i class="icon-stack2"></i>Documented Information(Retained)</a></li>
 									</ul>
 								</li>
 								<li class="<?=$bb1?>">
@@ -107,8 +122,7 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 										<li class="<?=$b5?>"><a href="<?= base_url('consultant/resolved_list/CORRECTIVE') ?>">Resolution log for the monitoring</a></li>
 									</ul>
 								</li>
-								<li class="<?=$c8?>"><a href="<?= base_url('consultant/procedure') ?>"><i class="icon-stack2"></i>Documented Information(Maintained)</a></li>
-								<li class="<?=$c9?>"><a href="<?= base_url('consultant/record') ?>"><i class="icon-stack2"></i>Documented Information(Retained)</a></li>
+								
 								<?php if ($user_type == "consultant"):?>
 								<li class="<?=$cc1?>">
 									<a href="#"><i class="icon-gear"></i>Manage</a>
@@ -178,11 +192,7 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 										
 										<li class="<?=$c10?>"><a href="<?= base_url('consultant/customer') ?>"><span>Customer</span></a></li>
 										<li class="<?=$c11?>"><a href="<?= base_url('consultant/supplier') ?>"><span>Supplier</span></a></li>
-										<li class="<?=$c12?>"><a href="<?= base_url('consultant/process') ?>"><span>IMS CORE PROCESS</span></a></li>
-										<li class="<?=$c13?>"><a href="<?= base_url('consultant/pre_process') ?>"><span>Support Process</span></a></li>
-										<li class="<?=$c14?>">
-											<a href="<?= base_url('consultant/additional_process') ?>"><span>Additional Requirements</span></a></li>
-										<li class="<?=$c15?>"><a href="<?= base_url('auth/update_process') ?>"><span> Upgrade Plan</span></a></li>
+										<!-- <li class="<?=$c15?>"><a href="<?= base_url('auth/update_process') ?>"><span> Upgrade Plan</span></a></li> -->
 										<li class="<?=$c16?>"><a href="<?= base_url('consultant/payment_list') ?>" >Invoice</a></li>
 										<li class="<?=$c54?>"><a href="<?= base_url('consultant/product') ?>"><span>Product or Service</span></a></li>
 										

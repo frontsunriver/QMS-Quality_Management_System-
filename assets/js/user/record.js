@@ -62,11 +62,17 @@ $(function() {
                     {
                         "sTitle" : "Actions", "mData": "",
                         mRender: function (data, type, row) {
-                            return  '<ul class="icons-list">' +
-                                        //'<li><a href="#" type="button" title="Edit" class="btn btn-primary btn-sm" style="color: white;">Detail</a></li>' +
-                                        '<li><a href="#" type="button" title="Edit" class="btn btn-primary btn-sm" style="color: white;">Edit</a></li>' +
-                                        '<li><a href="#" class="btn btn-primary btn-sm" style="color: white;" title="Delete">Delete</a></li>' +
+                            if(userType == 'consultant') {
+                                return  '<ul class="icons-list">' +
+                                    '<li><a href="#" type="button" title="Edit" class="btn btn-primary btn-sm" style="color: white;">Edit</a></li>' +
+                                    '<li><a href="#" class="btn btn-primary btn-sm" style="color: white;" title="Delete">Delete</a></li>' +
+                                    '<li><a href="#" class="btn btn-primary btn-sm" style="color: white;" title="Control">Control</a></li>' +
+                                    '</ul>';    
+                            }else {
+                                return  '<ul class="icons-list">' +
+                                    '<li><a href="#" class="btn btn-primary btn-sm" style="color: white;" title="Control">Control</a></li>' +
                                     '</ul>';
+                            }
                         }
                     }
         ],

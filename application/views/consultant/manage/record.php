@@ -126,8 +126,10 @@
                         <h5 class="panel-title">Documented Information(Retained) Register</h5>
                     </div>
                     <div>
+                        <?php if($this->session->userdata('user_type') == 'consultant'):?>
                         <button type="button" id="addbtn" class="btn btn-primary pull-right" style="margin-right: 20px;" data-toggle="modal" data-target="#modal_save">
                             ADD</button>
+                        <?php endif;?>
                         <a href="<?php echo base_url(); ?>index.php/Consultant/download_content_pdf_record" class="btn btn-primary pull-right" style="margin-right: 20px;float: left;">Export</a>
                     </div>
 
