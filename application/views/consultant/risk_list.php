@@ -134,10 +134,9 @@
                             <option value = "1">Close</option>
                         </select>
                         <a onclick="download_risk()" class="btn btn-primary pull-right" style="margin-right: 20px;float: left;">Export</a>
-                        <?php if ($user_type == "consultant"): ?>
-                            <button type="button" id="new_risk" class="btn btn-primary pull-right" style="margin-right: 20px;" data-toggle="modal" data-target="#modal_risk">
-                                ADD</button>
-                        <?php endif;?>
+                        
+                        <button type="button" id="new_risk" class="btn btn-primary pull-right" style="margin-right: 20px;" data-toggle="modal" data-target="#modal_risk">
+                            ADD</button>
                     </div>
 
                     <table class="table datatable-risk">

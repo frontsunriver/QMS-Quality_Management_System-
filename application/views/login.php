@@ -156,7 +156,9 @@
 
 			<div class="text-center">
 
-				<div class="icon-object border-warning-400 text-warning-400"><i class="icon-people"></i></div>
+				<div class="">
+					<img src="<?= base_url(IMG_URL . 'logo_login.png') ?>" alt="" style="width:175px;">
+				</div>
 
 				<h5 class="content-group-lg">Login to your account
 

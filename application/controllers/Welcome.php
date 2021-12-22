@@ -35,8 +35,7 @@ class Welcome extends MY_Controller
 
 		if ($this->_user->type == 'executive' || $this->_user->type == 'admin')
 			$this->redirect('admin/consultant_list');
-		else if ($this->_user->type == 'employee' ||
-				$this->_user->type == 'process_owner' || $this->_user->type == 'consultant')
+		else if ($this->_user->type == 'employee' || $this->_user->type == 'process_owner' || $this->_user->type == 'consultant')
 			$this->redirect('welcome/consultantdashboard');
 		else if ($this->_user->type == 'manufacturing' || $this->_user->type == 'monitor')
 			$this->redirect('manufacture');

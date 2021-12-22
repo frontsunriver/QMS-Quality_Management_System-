@@ -239,8 +239,8 @@ class Auth extends MY_Controller
 
                     }
                     else if($type == 'consultant' || $type == "executive"){
-                        
                         $user = $this->Auth_model->login($param, $type);
+                        
                         if($user && verifyHashedPassword( $password, $user->password )){
                             if($user->is_active == 0) {
                                 $this->session->set_flashdata('flash', array(
@@ -270,8 +270,7 @@ class Auth extends MY_Controller
                         }
                     } else{
                         $user = $this->Auth_model->employee_login($username, $type);
-                        print_r($username);
-                        exit;
+                        
                         if($user && verifyHashedPassword( $password, $user->password )){
                             $user->type = $type;
                             $this->session->set_userdata('user', $user);
@@ -299,8 +298,6 @@ class Auth extends MY_Controller
                         $this->session->set_flashdata('flash', array(
                             'msg' => 'Invalid Credentials'
                         ));
-                        echo $pos;
-                        exit;
                         if ($pos !== false) {
                             $this->render('admin_login');    
                         }else{
@@ -1821,7 +1818,7 @@ class Auth extends MY_Controller
 				$query = $this->db->update('consultant',$upArr);
 			    break;
 			  default:
-				$this->db->where('id', $this->session->userdata('employee_id'));
+				$this->db->where('employee_id', $this->session->userdata('employee_id'));
 				$query = $this->db->update('employees', $upArr);
 			}
 

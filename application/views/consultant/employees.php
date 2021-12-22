@@ -662,14 +662,10 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="row">
+                    <input type="hidden" class="styled permisions" name="employee" id="employee" value="3">
+                    <!-- <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-feedback" style="margin-left: 15px;">
-<!--                                <label class="checkbox" style="padding-left: 30px;">-->
-<!--                                    <input type="checkbox" class="styled permisions" name="executive" id="executive" value="1">-->
-<!--                                    Executive-->
-<!--                                </label>-->
                                 <label class="checkbox" style="padding-left: 30px;">
                                     <input type="checkbox" class="styled permisions" name="process_owner_sme" id="process_owner_sme" value="2">
                                     Process Owner/SME
@@ -701,7 +697,7 @@
                             </div>
                             <span id="type_err" style="color:red;"></span>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
 

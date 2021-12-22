@@ -1,8 +1,11 @@
 <style type="text/css">
 	.act1 {
-    background-color: rgb(38, 39, 39);
-    color: #fff;
-}
+		background-color: rgb(38, 39, 39);
+		color: #fff;
+	}
+	div.sidebar li a {
+		text-transform: uppercase;
+	}
 </style>
 
 <?php
@@ -79,12 +82,8 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 
 								<!-- Main -->
 								<li class="navigation-header"><span>Main</span> <i class="icon-menu" title="Main pages"></i></li>
-								<li>
-									<a href="<?= base_url('welcome/consultantdashboard') ?>"><i class="icon-home4"></i> <span>Dashboard</span></a></li>
-								<!-- <li class="<?= isset($menu_title) && $menu_title == 'Library' ? 'active' : '' ?>">
-									<a href="<?= base_url('consultant/library') ?>"><i class="icon-database"></i> <span>Library</span></a></li> -->
-								<li class="<?=$ee1?>">
-									<a href="#" ><i class="icon-stack2"></i> <span>VERIFICATION</span></a>
+								<li><a href="<?= base_url('welcome/consultantdashboard') ?>"><i class="icon-home4"></i> <span>DASHBOARD</span></a></li>
+								<li class="<?=$ee1?>"><a href="#" ><i class="icon-stack2"></i> <span>VERIFICATION</span></a>
 									<ul>
 										<li class="<?=$e1?>"><a href="<?= base_url('consultant/report') ?>">REPORT</a></li>
 										<li class="<?=$e2?>"><a href="<?= base_url('consultant/conduct') ?>">CONDUCT AN INSPECTION</a></li>
@@ -93,9 +92,9 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 									</ul>
 								</li>
 								<li class="<?=$aa1?>">
-									<a href="#"><i class="icon-stack2" style="height: 50px;"></i>Risk and Opportunities Manage</a>
+									<a href="#"><i class="icon-stack2"></i>RISK MANAGEMENT</a>
 									<ul>
-										<li class="<?=$a1?>"><a href="<?= base_url('consultant/risk_list') ?>">Risk List</a></li>
+										<li class="<?=$a1?>"><a href="<?= base_url('consultant/risk_list') ?>">RISK REGISTER</a></li>
 									</ul>
 								</li>
 								<li class="<?=$bb1?>">
@@ -104,12 +103,12 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 										<li class="<?=$b1?>"><a href="<?= base_url('consultant/corrective_action_form') ?>">Corrective Action Form</a></li>
 										<li class="<?=$b2?>"><a href="<?= base_url('consultant/corrective_action_report') ?>">Corrective Action Report</a></li>
 										<li class="<?=$b3?>"><a href="<?= base_url('consultant/resolution_list') ?>">Corrective Action Resolution Log</a></li>
-										<li class="<?=$b4?>">
-											<a href="<?= base_url('consultant/resolved_list/CORRECTION') ?>">Monitoring Resolution History</a></li>
-										<li class="<?=$b5?>">
-											<a href="<?= base_url('consultant/resolved_list/CORRECTIVE') ?>">Resolution log for the monitoring</a></li>
+										<li class="<?=$b4?>"><a href="<?= base_url('consultant/resolved_list/CORRECTION') ?>">Monitoring Resolution History</a></li>
+										<li class="<?=$b5?>"><a href="<?= base_url('consultant/resolved_list/CORRECTIVE') ?>">Resolution log for the monitoring</a></li>
 									</ul>
 								</li>
+								<li class="<?=$c8?>"><a href="<?= base_url('consultant/procedure') ?>"><i class="icon-stack2"></i>Documented Information(Maintained)</a></li>
+								<li class="<?=$c9?>"><a href="<?= base_url('consultant/record') ?>"><i class="icon-stack2"></i>Documented Information(Retained)</a></li>
 								<?php if ($user_type == "consultant"):?>
 								<li class="<?=$cc1?>">
 									<a href="#"><i class="icon-gear"></i>Manage</a>
@@ -176,7 +175,6 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 													<a href="<?= base_url('consultant/operational_risk_values') ?>"><span>Risk Values</span></a></li>
 											</ul>
 										</li>
-										<li class="<?=$c8?>"><a href="<?= base_url('consultant/procedure') ?>"><span>Documented Information(Maintained)</span></a></li>
 										
 										<li class="<?=$c10?>"><a href="<?= base_url('consultant/customer') ?>"><span>Customer</span></a></li>
 										<li class="<?=$c11?>"><a href="<?= base_url('consultant/supplier') ?>"><span>Supplier</span></a></li>
@@ -187,8 +185,7 @@ if(isset($d3)){ $d3=$d3; }else{ $d3='0'; }
 										<li class="<?=$c15?>"><a href="<?= base_url('auth/update_process') ?>"><span> Upgrade Plan</span></a></li>
 										<li class="<?=$c16?>"><a href="<?= base_url('consultant/payment_list') ?>" >Invoice</a></li>
 										<li class="<?=$c54?>"><a href="<?= base_url('consultant/product') ?>"><span>Product or Service</span></a></li>
-										<li class="<?=$c9?>">
-											<a href="<?= base_url('consultant/record') ?>"><span>Documented Information(Retained)</span></a></li>
+										
 										<li class="<?=$c17?>"><a href="<?= base_url('consultant/manage_material')?>" >Material</a></li>
 										<li class="<?=$c18?>"><a href="<?= base_url('consultant/manage_machine')?>" >Machine</a></li>
 
